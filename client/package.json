@@ -1,0 +1,48 @@
+{
+  "name": "progressive_web_app_demo",
+  "version": "1.0.0",
+  "description": "Shows how to Demo that shows how to use Angular 2 to build a progressive web app.",
+  "main": "gulpfile.js",
+  "scripts": {
+    "start": "gulp dev-watch",
+    "postinstall": "typings install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SteffenJahr/angular-progressive-web-app-demo.git"
+  },
+  "author": "Steffen Jahr <info@steffenjahr.de>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SteffenJahr/angular-progressive-web-app-demo/issues"
+  },
+  "homepage": "https://github.com/SteffenJahr/angular-progressive-web-app-demo#readme",
+  "devDependencies": {
+    "@angular/common": "2.0.1",
+    "@angular/compiler": "2.0.1",
+    "@angular/core": "2.0.1",
+    "@angular/http": "2.0.1",
+    "@angular/platform-browser": "2.0.1",
+    "@angular/platform-browser-dynamic": "2.0.1",
+    "@angular/router": "3.0.1",
+    "browser-sync": "2.16.0",
+    "core-js": "2.4.1",
+    "del": "2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "3.1.1",
+    "gulp-batch": "1.0.5",
+    "gulp-count": "0.3.0",
+    "gulp-inject": "4.1.0",
+    "gulp-inline-ng2-template": "3.0.1",
+    "gulp-less": "3.1.0",
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-typescript": "3.0.1",
+    "gulp-watch": "4.3.9",
+    "run-sequence": "1.2.2",
+    "rxjs": "5.0.0-beta.12",
+    "systemjs": "0.19.38",
+    "typescript": "2.0.3",
+    "typings": "1.4.0",
+    "zone.js": "0.6.25"
+  }
+}
