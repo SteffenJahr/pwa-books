@@ -143,13 +143,14 @@ gulp.task('dev:assets', () => {
 });
 
 gulp.task('dev:serviceWorker:cache', function (done) {
-    precache.write(path.join(config.targets.build, 'swCache.js'), {
+    precache.write(path.join(config.targets.build, 'serviceWorker.js'), {
         staticFileGlobs: [path.join(config.targets.build, '**', '*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,json}')],
-        stripPrefix: config.targets.build
+        stripPrefix: config.targets.build,
+        importScripts: ['serviceWorkerNotifications.js']
     }, done);
 });
 
-gulp.task('dev:serviceWorker:watch', () => watch(['!' + path.join(config.targets.build, 'swCache.js'),config.targets.build],
+gulp.task('dev:serviceWorker:watch', () => watch(['!' + path.join(config.targets.build, 'serviceWorker.js'), config.targets.build],
     batch((events, done) => runSequence('dev:serviceWorker:cache', done))));
 
 gulp.task('dev:watch', done => {

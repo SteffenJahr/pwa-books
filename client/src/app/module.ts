@@ -3,10 +3,12 @@ import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {AppComponent} from './components/app/app';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
-import {AppRoutes, appRoutingProviders} from './components/app/routes';
+import {AppRoutes, appRoutingProviders} from './appRoutes';
 import {DashboarcComponent} from './components/dashboard/dashboard';
 import {NavigationComponent} from './components/navigation/navigation';
-import {ServiceWorkerService} from './services/serviceworker/serviceWorker';
+import {ServiceWorkerService} from './services/serviceWorker';
+import {BookService} from './services/book';
+import {NotificationService} from './services/notification';
 
 @NgModule({
     imports: [
@@ -23,7 +25,9 @@ import {ServiceWorkerService} from './services/serviceworker/serviceWorker';
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         appRoutingProviders,
-        ServiceWorkerService
+        ServiceWorkerService,
+        BookService,
+        NotificationService
     ]
 })
 export class AppModule {

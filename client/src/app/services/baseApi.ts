@@ -1,0 +1,20 @@
+import {Http, Response, RequestOptions} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+
+export abstract class BaseApiService {
+    private apiRoot: string;
+
+    constructor(private _http: Http, private _options: RequestOptions) {
+        this.apiRoot = 'http://localhost:8090/';
+    }
+
+    protected get(urlSuffix: string): Observable<any> {
+        return this._http.get(`${this.apiRoot}${urlSuffix}`, this._options)
+            .map(res => res.json());
+    }
+
+    protected post(urlSuffix: string, payload: any): Observable<Response> {
+        return this._http.post(`${this.apiRoot}${urlSuffix}`, payload, this._options);
+    }
+}

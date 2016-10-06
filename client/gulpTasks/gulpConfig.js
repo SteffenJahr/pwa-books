@@ -56,7 +56,7 @@ const config = {
             baseDir: './build',
             middleware: {}
         },
-        port: 8000
+        port: 8888
     },
     vendorScripts: [
         'node_modules/core-js/client/shim.js',

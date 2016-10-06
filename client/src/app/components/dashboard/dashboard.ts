@@ -1,10 +1,18 @@
-import {Component} from '@angular/core';
+import {Component, Injectable} from '@angular/core';
+import {NotificationService} from '../../services/notification';
 
 @Component({
     moduleId: __moduleName,
     selector: 'dashboard',
     templateUrl: 'dashboard.html'
 })
-export class DashboarcComponent{
+@Injectable()
+export class DashboarcComponent {
 
+    constructor(private _notificationService: NotificationService) {
+    }
+
+    public sendNotification(): void {
+        this._notificationService.send().subscribe(()=>{});
+    }
 }

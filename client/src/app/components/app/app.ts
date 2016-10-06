@@ -1,5 +1,5 @@
 import {Component, Injectable} from '@angular/core';
-import {ServiceWorkerService} from '../../services/serviceworker/serviceWorker';
+import {ServiceWorkerService} from '../../services/serviceWorker';
 
 @Component({
     moduleId: __moduleName,

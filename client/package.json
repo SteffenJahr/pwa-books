@@ -1,7 +1,7 @@
 {
   "name": "progressive_web_app_demo",
   "version": "1.0.0",
-  "description": "Shows how to Demo that shows how to use Angular 2 to build a progressive web app.",
+  "description": "Demo that shows how to use Angular 2 to build a progressive web app.",
   "main": "gulpfile.js",
   "scripts": {
     "start": "gulp dev-watch",
