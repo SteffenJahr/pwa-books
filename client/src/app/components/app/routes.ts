@@ -1,5 +1,5 @@
 import {Routes, RouterModule} from '@angular/router';
-import {DashboarcComponent} from '../dashboard/dasboard';
+import {DashboarcComponent} from '../dashboard/dashboard';
 
 const appRoutes: Routes = [
     {

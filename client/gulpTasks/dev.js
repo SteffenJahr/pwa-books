@@ -14,7 +14,8 @@ const gulp = require('gulp'),
     runSequence = require('run-sequence'),
     path = require('path'),
     browserSync = require('browser-sync').create(),
-    inject = require('gulp-inject');
+    inject = require('gulp-inject'),
+    precache = require('sw-precache');
 
 gulp.task('dev:clean', () => del(config.targets.build));
 
@@ -40,7 +41,7 @@ function createTypeScriptPipe(sources, fastTranspilation) {
 gulp.task('dev:scripts', () => createTypeScriptPipe(gulp.src(config.sources.scripts)));
 
 gulp.task('dev:scripts:watch', () => watch([...config.sources.scripts],
-    batch(events => createTypeScriptPipe(events, true))));
+    batch(events => createTypeScriptPipe(events, false))));
 
 
 function getTypeScriptFilesFromTemplateFiles(source) {
@@ -69,7 +70,22 @@ function createLessPipe(sources) {
         .pipe(browserSync.stream({ match: '**/*.css' }));
 }
 
-gulp.task('dev:styles', () => createLessPipe(gulp.src(config.sources.styles.main)));
+function createVendorCssPipe(sources) {
+    return sources
+        .pipe(gulp.dest(`${config.targets.build}/css`))
+        .pipe(browserSync.stream({ match: '**/*.css' }));
+}
+
+gulp.task('dev:styles:less', () => createLessPipe(gulp.src(config.sources.styles.main)));
+
+gulp.task('dev:styles:vendor', () => createVendorCssPipe(gulp.src(config.sources.styles.vendor)));
+
+gulp.task('dev:styles', (done) => {
+    return runSequence(
+        'dev:styles:less',
+        'dev:styles:vendor',
+        done);
+});
 
 gulp.task('dev:styles:watch', () => watch(config.sources.styles.all,
     batch(events => createLessPipe(gulp.src(config.sources.styles.main)))));
@@ -113,10 +129,28 @@ gulp.task('dev:index', () => {
 gulp.task('dev:index:watch', () => watch(config.index,
     batch((events, done) => runSequence('dev:index', done))));
 
+gulp.task('dev:manifest', () => {
+    gulp.src(config.manifest)
+        .pipe(gulp.dest(config.targets.build));
+});
+
+gulp.task('dev:manifest:watch', () => watch(config.manifest,
+    batch((events, done) => runSequence('dev:manifest', done))));
+
 gulp.task('dev:assets', () => {
     return gulp.src(config.sources.assets)
         .pipe(gulp.dest(config.targets.assets));
 });
+
+gulp.task('dev:serviceWorker:cache', function (done) {
+    precache.write(path.join(config.targets.build, 'swCache.js'), {
+        staticFileGlobs: [path.join(config.targets.build, '**', '*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,json}')],
+        stripPrefix: config.targets.build
+    }, done);
+});
+
+gulp.task('dev:serviceWorker:watch', () => watch(['!' + path.join(config.targets.build, 'swCache.js'),config.targets.build],
+    batch((events, done) => runSequence('dev:serviceWorker:cache', done))));
 
 gulp.task('dev:watch', done => {
     runSequence(
@@ -126,7 +160,9 @@ gulp.task('dev:watch', done => {
             'dev:styles:watch',
             'dev:templates:watch',
             'dev:systemJs:watch',
-            'dev:index:watch'
+            'dev:index:watch',
+            'dev:manifest:watch',
+            'dev:serviceWorker:watch'
         ],
         done
     );
@@ -143,7 +179,9 @@ gulp.task('dev-build', done => {
             'dev:styles',
             'dev:systemJs'
         ],
+        'dev:manifest',
         'dev:index',
+        'dev:serviceWorker:cache',
         done
     );
 });

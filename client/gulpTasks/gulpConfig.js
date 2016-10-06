@@ -9,6 +9,7 @@ const config = {
     version: currentPackage.version,
     base: 'src',
     index: 'src/index.html',
+    manifest: 'src/manifest.json',
     systemJs: 'src/systemSetup.js',
     sources: {
         scripts: [
@@ -22,6 +23,9 @@ const config = {
             all: ['src/less/**/*.less'],
             main: [
                 'src/less/app.less'
+            ],
+            vendor: [
+                'node_modules/bootstrap/dist/css/bootstrap.css'
             ]
         },
         assets: [

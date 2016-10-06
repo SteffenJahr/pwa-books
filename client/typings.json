@@ -1,6 +1,7 @@
 {
     "globalDependencies": {
+        "core-js": "registry:dt/core-js#0.0.0+20160725163759",
         "node": "registry:dt/node#6.0.0+20160831021119",
-        "core-js": "registry:dt/core-js#0.0.0+20160725163759"
+        "serviceworker": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/079636697a6e35a1c7a26917be2ff7ccfd10951d/service_worker_api/service_worker_api.d.ts"
     }
 }

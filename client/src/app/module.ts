@@ -4,7 +4,9 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './components/app/app';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AppRoutes, appRoutingProviders} from './components/app/routes';
-import {DashboarcComponent} from './components/dashboard/dasboard';
+import {DashboarcComponent} from './components/dashboard/dashboard';
+import {NavigationComponent} from './components/navigation/navigation';
+import {ServiceWorkerService} from './services/serviceworker/serviceWorker';
 
 @NgModule({
     imports: [
@@ -14,12 +16,14 @@ import {DashboarcComponent} from './components/dashboard/dasboard';
     ],
     declarations: [
         AppComponent,
-        DashboarcComponent
+        DashboarcComponent,
+        NavigationComponent
     ],
     bootstrap: [AppComponent],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        appRoutingProviders
+        appRoutingProviders,
+        ServiceWorkerService
     ]
 })
 export class AppModule {
