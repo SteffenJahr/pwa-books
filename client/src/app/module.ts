@@ -9,12 +9,14 @@ import {NavigationComponent} from './components/navigation/navigation';
 import {ServiceWorkerService} from './services/serviceWorker';
 import {BookService} from './services/book';
 import {NotificationService} from './services/notification';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     imports: [
         BrowserModule,
         HttpModule,
-        AppRoutes
+        AppRoutes,
+        FormsModule
     ],
     declarations: [
         AppComponent,

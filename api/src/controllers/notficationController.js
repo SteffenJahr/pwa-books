@@ -1,6 +1,8 @@
 'use strict';
 
-const restify = require('restify');
+const request = require('request');
+const endpoint = 'https://fcm.googleapis.com/fcm/send';
+const authHeader = 'key=AIzaSyAPLFk-MEy4WD8OjdCD8BCGivH7Pn0QFnE';
 
 const registrations = [];
 
@@ -24,19 +26,25 @@ const register = (req, res, next) => {
     return next();
 };
 
-const notification = (request, response, next) => {
-
-    let client = restify.createHttpClient({
-        url: 'https://fcm.googleapis.com'
-    });
+const notification = (req, response, next) => {
 
     let data = {
         registration_ids: registrations
     };
-
-    client.post('/fcm/send', JSON.stringify(data), (err, req, res, obj) => {
+    let options = {
+        url: endpoint,
+        headers: {
+            'Authorization': authHeader,
+            'Content-Type': 'application/json'
+        },
+        body: data,
+        json: true
+    };
+    request.post(options, (err, res, body) => {
+        response.writeHead(200);
         response.end();
     });
+
 
     return next();
 };

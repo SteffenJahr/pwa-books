@@ -1,72 +1,73 @@
+
+<div class="row" *ngIf="books">
+    <div class="col-xs-12 col-md-4" *ngFor="let book of books">
+        <div class="card">
+            <div class="card-block">
+                <h4>{{ book.title }}</h4>
+                Gelesen: {{ book.read }}
+            </div>
+        </div>
+    </div>
+    <!--<div class="col-xs-12 col-md-4">-->
+    <!--<div class="card">-->
+    <!--<div class="card-block">-->
+    <!--<h4 class="card-title">Test</h4>-->
+    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-xs-12 col-md-4">-->
+    <!--<div class="card">-->
+    <!--<div class="card-block">-->
+    <!--<h4 class="card-title">Test</h4>-->
+    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-xs-12 col-md-4">-->
+    <!--<div class="card">-->
+    <!--<div class="card-block">-->
+    <!--<h4 class="card-title">Test</h4>-->
+    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-xs-12 col-md-4">-->
+    <!--<div class="card">-->
+    <!--<div class="card-block">-->
+    <!--<h4 class="card-title">Test</h4>-->
+    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-xs-12 col-md-4">-->
+    <!--<div class="card">-->
+    <!--<div class="card-block">-->
+    <!--<h4 class="card-title">Test</h4>-->
+    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-xs-12 col-md-4">-->
+    <!--<div class="card">-->
+    <!--<div class="card-block">-->
+    <!--<h4 class="card-title">Test</h4>-->
+    <!--<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+    <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+</div>
+
 <div class="row">
     <div class="col-xs-12">
         <div class="btn-group">
-            <button class="btn btn-default" (click)="sendNotification()">Push Notifcation</button>
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12 col-md-4">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Test</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Test</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Test</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Test</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Test</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Test</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-md-4">
-        <div class="card">
-            <div class="card-block">
-                <h4 class="card-title">Test</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+            <button class="btn btn-default" (click)="sendNotification()">Send Notifcation</button>
         </div>
     </div>
 </div>

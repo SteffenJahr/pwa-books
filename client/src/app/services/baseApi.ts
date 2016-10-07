@@ -17,4 +17,8 @@ export abstract class BaseApiService {
     protected post(urlSuffix: string, payload: any): Observable<Response> {
         return this._http.post(`${this.apiRoot}${urlSuffix}`, payload, this._options);
     }
+
+    protected put(urlSuffix: string, payload: any): Observable<Response> {
+        return this._http.put(`${this.apiRoot}${urlSuffix}`, payload, this._options);
+    }
 }

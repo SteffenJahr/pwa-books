@@ -162,8 +162,8 @@ gulp.task('dev:watch', done => {
             'dev:templates:watch',
             'dev:systemJs:watch',
             'dev:index:watch',
-            'dev:manifest:watch',
-            'dev:serviceWorker:watch'
+            'dev:manifest:watch'
+            //'dev:serviceWorker:watch'
         ],
         done
     );
@@ -182,7 +182,7 @@ gulp.task('dev-build', done => {
         ],
         'dev:manifest',
         'dev:index',
-        'dev:serviceWorker:cache',
+        //'dev:serviceWorker:cache',
         done
     );
 });
