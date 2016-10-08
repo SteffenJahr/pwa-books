@@ -1,32 +1,75 @@
-!function () {
-    'use strict';
+(function (global) {
+    // If process is present, we are running through this code via gulp and try to compile it.
+    var isAOTCompilation = !!global.process;
+    var npmPath = isAOTCompilation ? './node_modules/' : 'lib/';
 
-    System.config({
-        paths: {
-            'npm:': 'lib/'
-        },
-        map: {
-            app: 'app',
-            '@angular/core': 'npm:@angular/core/bundles/core.umd.js',
-            '@angular/compiler': 'npm:@angular/compiler/bundles/compiler.umd.js',
-            '@angular/common': 'npm:@angular/common/bundles/common.umd.js',
-            '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
-            '@angular/platform-browser': 'npm:@angular/platform-browser/bundles/platform-browser.umd.js',
-            '@angular/platform-browser-dynamic': 'npm:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
-            '@angular/http': 'npm:@angular/http/bundles/http.umd.js',
-            '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
-            'rxjs': 'npm:rxjs'
-        },
-        packages: {
-            app: {
-                main: './main.js',
-                defaultExtension: 'js'
-            },
-            rxjs: {
-                defaultExtension: 'js'
-            }
+    var angularPackages = [
+        '@angular/core',
+        '@angular/common',
+        '@angular/compiler',
+        '@angular/platform-browser',
+        '@angular/http',
+        '@angular/router',
+        '@angular/forms'
+    ];
+
+    if (!isAOTCompilation) {
+        angularPackages.push('@angular/platform-browser-dynamic');
+    }
+
+    var mapConfig = {
+
+    };
+
+    var packagesConfig = {
+        app: {
+            main: isAOTCompilation ? 'main.aot' : 'main',
+            defaultExtension: 'js'
         }
+    };
+
+    if (isAOTCompilation) {
+        packagesConfig.rxjs = {
+            defaultExtension: 'js'
+        };
+
+        packagesConfig['ng2-translate'] = {
+            main: 'ng2-translate',
+            defaultExtension: 'js'
+        };
+
+        mapConfig.rxjs = 'npm:rxjs';
+    }
+
+    angularPackages.forEach(function (p) {
+        var name = p.split('/');
+        var mappedName = 'npm:' + p;
+
+        if (!isAOTCompilation) {
+            mappedName += '/bundles/' + name[1] + '.umd.js';
+        }
+        else {
+            packagesConfig[p] = {
+                defaultExtension: 'js',
+                main: 'index'
+            };
+        }
+
+        mapConfig[p] = mappedName;
     });
 
-    System.import('app').catch((error) => console.log(error));
-}();
+    var systemConfig = {
+        paths: {
+            'npm:': npmPath
+        },
+        map: mapConfig,
+        packages: packagesConfig
+    };
+
+    System.config(systemConfig);
+
+    if (!isAOTCompilation) {
+        System.import('app')
+            .catch(console.error.bind(console));
+    }
+})(this);

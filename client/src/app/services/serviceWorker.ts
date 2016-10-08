@@ -16,7 +16,7 @@ export class ServiceWorkerService {
                 .then(() => navigator.serviceWorker.ready)
                 .then((serviceWorkerRegistration) => {
                     this._registration = serviceWorkerRegistration;
-                    console.log('Successfully registered service worker', serviceWorkerRegistration);
+                    console.log('Successfully registered service worker');
                     this._registration.pushManager
                         .subscribe({ userVisibleOnly: true })
                         .then((sub) => {

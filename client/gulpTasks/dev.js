@@ -15,12 +15,12 @@ const gulp = require('gulp'),
     path = require('path'),
     browserSync = require('browser-sync').create(),
     inject = require('gulp-inject'),
-    precache = require('sw-precache');
+    Builder = require('systemjs-builder');
 
 gulp.task('dev:clean', () => del(config.targets.build));
 
 function createTypeScriptPipe(sources, fastTranspilation) {
-    const tsOptions = Object.assign({}, config.typescript, {
+    const tsOptions = Object.assign({}, config.typescript.dev, {
         isolatedModules: !!fastTranspilation
     });
 
@@ -38,7 +38,10 @@ function createTypeScriptPipe(sources, fastTranspilation) {
         .on('end', () => browserSync.reload());
 }
 
-gulp.task('dev:scripts', () => createTypeScriptPipe(gulp.src(config.sources.scripts)));
+gulp.task('dev:scripts', () => createTypeScriptPipe(gulp.src([
+    ...config.sources.scripts,
+    'typings/index.d.ts'
+])));
 
 gulp.task('dev:scripts:watch', () => watch([...config.sources.scripts],
     batch(events => createTypeScriptPipe(events, false))));
@@ -69,7 +72,6 @@ function createLessPipe(sources) {
         .pipe(gulp.dest(`${config.targets.build}/css`))
         .pipe(browserSync.stream({ match: '**/*.css' }));
 }
-
 function createVendorCssPipe(sources) {
     return sources
         .pipe(gulp.dest(`${config.targets.build}/css`))
@@ -87,20 +89,31 @@ gulp.task('dev:styles', (done) => {
         done);
 });
 
+gulp.task('dev:styles', () => createLessPipe(gulp.src(config.sources.styles.main)));
+
 gulp.task('dev:styles:watch', () => watch(config.sources.styles.all,
     batch(events => createLessPipe(gulp.src(config.sources.styles.main)))));
+
+function createI18nPipe(sources) {
+    return sources
+        .pipe(count('Copied ## i18n files'))
+        .pipe(gulp.dest(`${config.targets.build}/i18n`))
+        .on('end', () => browserSync.reload());
+}
 
 gulp.task('dev:watch:init', done => {
     browserSync.init(config.browserSync, done);
 });
 
 gulp.task('dev:vendorScripts', () => {
-    return gulp.src(config.vendorScripts)
+    return gulp.src([
+        ...config.vendorScripts
+    ])
         .pipe(gulp.dest(config.targets.lib));
 });
 
 gulp.task('dev:nodeModules', () => {
-    return gulp.src(config.nodeModules.map(m => path.join('node_modules', m, '**/*')), { base: 'node_modules' })
+    return gulp.src(config.nodeModules.map(m => path.join('node_modules', m, '**/*.{js,map}')), { base: 'node_modules' })
         .pipe(gulp.dest(config.targets.lib));
 });
 
@@ -129,6 +142,37 @@ gulp.task('dev:index', () => {
 gulp.task('dev:index:watch', () => watch(config.index,
     batch((events, done) => runSequence('dev:index', done))));
 
+// https://github.com/angular/angular/issues/9359#issuecomment-247409174
+gulp.task('dev:bundle:rxjs', () => {
+    const options = {
+        normalize: true,
+        runtime: false,
+        minify: false,
+        mangle: false
+    };
+
+    const builder = new Builder('./');
+    builder.config({
+        paths: {
+            'n:*': 'node_modules/*',
+            'rxjs/*': 'node_modules/rxjs/*.js',
+        },
+        map: {
+            'rxjs': 'n:rxjs',
+        },
+        packages: {
+            'rxjs': { main: 'Rx.js', defaultExtension: 'js' },
+        }
+    });
+
+    return builder.bundle('rxjs', `${config.targets.lib}/rxjs/Rx.js`, options);
+});
+
+gulp.task('dev:assets', () => {
+    return gulp.src(config.sources.assets)
+        .pipe(gulp.dest(config.targets.assets));
+});
+
 gulp.task('dev:manifest', () => {
     gulp.src(config.manifest)
         .pipe(gulp.dest(config.targets.build));
@@ -136,22 +180,6 @@ gulp.task('dev:manifest', () => {
 
 gulp.task('dev:manifest:watch', () => watch(config.manifest,
     batch((events, done) => runSequence('dev:manifest', done))));
-
-gulp.task('dev:assets', () => {
-    return gulp.src(config.sources.assets)
-        .pipe(gulp.dest(config.targets.assets));
-});
-
-gulp.task('dev:serviceWorker:cache', function (done) {
-    precache.write(path.join(config.targets.build, 'serviceWorker.js'), {
-        staticFileGlobs: [path.join(config.targets.build, '**', '*.{js,html,css,png,jpg,gif,svg,eot,ttf,woff,json}')],
-        stripPrefix: config.targets.build,
-        importScripts: ['serviceWorkerNotifications.js']
-    }, done);
-});
-
-gulp.task('dev:serviceWorker:watch', () => watch(['!' + path.join(config.targets.build, 'serviceWorker.js'), config.targets.build],
-    batch((events, done) => runSequence('dev:serviceWorker:cache', done))));
 
 function createResourcesPipe(sources) {
     return sources
@@ -165,7 +193,6 @@ gulp.task('dev:resources', () => createResourcesPipe(gulp.src(config.sources.res
 gulp.task('dev:resources:watch', () => watch(config.sources.resources,
     batch(events => createResourcesPipe(events))));
 
-
 gulp.task('dev:watch', done => {
     runSequence(
         'dev:watch:init',
@@ -177,7 +204,6 @@ gulp.task('dev:watch', done => {
             'dev:index:watch',
             'dev:manifest:watch',
             'dev:resources:watch'
-            //'dev:serviceWorker:watch'
         ],
         done
     );
@@ -192,12 +218,15 @@ gulp.task('dev-build', done => {
             'dev:nodeModules',
             'dev:scripts',
             'dev:styles',
+            'dev:styles:vendor',
             'dev:systemJs',
+            'dev:bundle:rxjs',
+            'dev:manifest',
             'dev:resources'
         ],
-        'dev:manifest',
-        'dev:index',
-        //'dev:serviceWorker:cache',
+        [
+            'dev:index'
+        ],
         done
     );
 });

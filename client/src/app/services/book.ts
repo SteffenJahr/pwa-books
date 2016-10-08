@@ -12,6 +12,9 @@ export class BookService extends BaseApiService {
     }
 
     public list(): Observable<Array<Book>> {
+
+        // TODO: Add cachingmechanism here
+
         return this.get('books')
             .flatMap((response) => Observable.of(response));
     }

@@ -13,8 +13,7 @@ const config = {
     systemJs: 'src/systemSetup.js',
     sources: {
         scripts: [
-            'src/**/*.ts',
-            'typings/index.d.ts'
+            'src/**/*.ts'
         ],
         templates: [
             'src/**/*.html'
@@ -42,14 +41,16 @@ const config = {
         resources: 'build/resources'
     },
     typescript: {
-        target: 'ES5',
-        module: 'system',
-        moduleResolution: 'node',
-        declaration: false,
-        emitDecoratorMetadata: true,
-        experimentalDecorators: true,
-        removeComments: false,
-        noImplicitAny: false
+        dev: {
+            target: 'ES5',
+            module: 'system',
+            moduleResolution: 'node',
+            declaration: false,
+            emitDecoratorMetadata: true,
+            experimentalDecorators: true,
+            removeComments: false,
+            noImplicitAny: false
+        }
     },
     browsers: ['IE >= 11', 'last 2 versions'],
     browserSync: {
@@ -69,14 +70,17 @@ const config = {
         'node_modules/systemjs/dist/system.src.js',
         'node_modules/moment/moment.js',
     ],
+    bundles: [
+        'rxjs/Rx.js'
+    ],
     nodeModules: [
-        '@angular',
-        'rxjs'
+        '@angular'
     ]
 };
 
 config.injectables = [
     ...config.vendorScripts.map(v => path.join(config.targets.lib, v.split('/').slice(-1)[0])),
+    ...config.bundles.map(v => path.join(config.targets.lib, v)),
     path.join(config.targets.build, config.systemJs.split('/').slice(-1)[0]),
     path.join(config.targets.build, '**/*.css')
 ];
