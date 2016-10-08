@@ -24,11 +24,11 @@ const config = {
                 'src/less/app.less'
             ],
             vendor: [
-                'node_modules/bootstrap/dist/css/bootstrap.css'
+                'src/assets/material.min.css'
             ]
         },
         assets: [
-            'src/assets/**/*'
+
         ],
         resources: [
             'src/resources/**/*'

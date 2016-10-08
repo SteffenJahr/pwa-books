@@ -16,13 +16,23 @@
 <body>
 
 </body>
-<div class="container">
-    <h1>Progressive Web App Demo</h1>
-    <div class="jumbotron">
-        <app-root>
-            Please go online to use this app.
-        </app-root>
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Angular Progressive Web App Demo</span>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Angular Progressive Web App Demo</span>
     </div>
+    <main class="mdl-layout__content">
+        <div class="page-content">
+            <app-root>
+                <div id="p2" class="mdl-progress mdl-js-progress mdl-progress__indeterminate"></div>
+            </app-root>
+        </div>
+    </main>
 </div>
 <!-- inject:js -->
 <!-- endinject -->
