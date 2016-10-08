@@ -19,6 +19,7 @@ const angularFiles = [
     '/app/services/book.js',
     '/app/services/notification.js',
     '/app/services/serviceWorker.js',
+    '/app/services/localStorage.js',
     '/app/appRoutes.js',
     '/app/main.js',
     '/app/module.js',
@@ -37,8 +38,8 @@ const angularFiles = [
     '/lib/@angular/forms/bundles/forms.umd.js'
 ];
 
-const appShellCacheName = 'angular_pwa_app_shell_cache_v1.25';
-const angularCacheName = 'angular_pwa_app_cache_v1.25';
+const appShellCacheName = 'angular_pwa_app_shell_cache_v1.26';
+const angularCacheName = 'angular_pwa_app_cache_v1.26';
 
 self.addEventListener('install', (event) => {
     console.log('[ServiceWorker] Install ServiceWorker');
