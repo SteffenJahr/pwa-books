@@ -94,13 +94,6 @@ gulp.task('dev:styles', () => createLessPipe(gulp.src(config.sources.styles.main
 gulp.task('dev:styles:watch', () => watch(config.sources.styles.all,
     batch(events => createLessPipe(gulp.src(config.sources.styles.main)))));
 
-function createI18nPipe(sources) {
-    return sources
-        .pipe(count('Copied ## i18n files'))
-        .pipe(gulp.dest(`${config.targets.build}/i18n`))
-        .on('end', () => browserSync.reload());
-}
-
 gulp.task('dev:watch:init', done => {
     browserSync.init(config.browserSync, done);
 });
