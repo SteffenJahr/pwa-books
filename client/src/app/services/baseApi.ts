@@ -9,9 +9,14 @@ export abstract class BaseApiService {
         this.apiRoot = 'http://localhost:8090/';
     }
 
-    protected get(urlSuffix: string): Observable<any> {
-        return this._http.get(`${this.apiRoot}${urlSuffix}`, this._options)
-            .map(res => res.json());
+    protected get(urlSuffix: string, resolveResponse: boolean = true): Observable<any> {
+
+        let responseObservable = this._http.get(`${this.apiRoot}${urlSuffix}`, this._options);
+
+        if (resolveResponse)
+            responseObservable = responseObservable.map(res => res.json());
+
+        return responseObservable;
     }
 
     protected post(urlSuffix: string, payload: any): Observable<Response> {

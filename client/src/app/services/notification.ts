@@ -14,7 +14,7 @@ export class NotificationService extends BaseApiService {
     }
 
     public send(): Observable<any> {
-        return this.get('notification');
+        return this.get('notification', false);
     }
 
 }

@@ -22,8 +22,6 @@ export class DashboarcComponent implements OnInit {
     }
 
     public sendNotification(): void {
-        this._notificationService.send().subscribe((response) => {
-            console.log(response);
-        });
+        this._notificationService.send().subscribe(() => {});
     }
 }
