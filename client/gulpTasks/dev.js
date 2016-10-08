@@ -112,8 +112,8 @@ gulp.task('dev:nodeModules', () => {
 
 gulp.task('dev:systemJs', () => {
     return gulp.src(config.systemJs)
-        .pipe(gulp.dest(config.targets.build))
-        .on('end', () => browserSync.reload());
+        .pipe(gulp.dest(config.targets.build));
+        //.on('end', () => browserSync.reload());
 });
 
 gulp.task('dev:systemJs:watch', () => watch(config.systemJs,
@@ -128,8 +128,8 @@ gulp.task('dev:index', () => {
             addRootSlash: false,
             ignorePath: config.targets.build
         }))
-        .pipe(gulp.dest(config.targets.build))
-        .on('end', () => browserSync.reload());
+        .pipe(gulp.dest(config.targets.build));
+        //.on('end', () => browserSync.reload());
 });
 
 gulp.task('dev:index:watch', () => watch(config.index,
@@ -177,8 +177,8 @@ gulp.task('dev:manifest:watch', () => watch(config.manifest,
 function createResourcesPipe(sources) {
     return sources
         .pipe(count('Copied ## resource files'))
-        .pipe(gulp.dest(config.targets.resources))
-        .on('end', () => browserSync.reload());
+        .pipe(gulp.dest(config.targets.resources));
+        //.on('end', () => browserSync.reload());
 }
 
 gulp.task('dev:resources', () => createResourcesPipe(gulp.src(config.sources.resources)));

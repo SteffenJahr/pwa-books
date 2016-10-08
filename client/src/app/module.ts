@@ -9,6 +9,7 @@ import {ServiceWorkerService} from './services/serviceWorker';
 import {BookService} from './services/book';
 import {NotificationService} from './services/notification';
 import {FormsModule} from '@angular/forms';
+import {LocalStorageService} from './services/localStorage';
 
 @NgModule({
     imports: [
@@ -27,7 +28,8 @@ import {FormsModule} from '@angular/forms';
         appRoutingProviders,
         ServiceWorkerService,
         BookService,
-        NotificationService
+        NotificationService,
+        LocalStorageService
     ]
 })
 export class AppModule {

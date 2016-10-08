@@ -16,18 +16,17 @@ export class ServiceWorkerService {
                 .then(() => navigator.serviceWorker.ready)
                 .then((serviceWorkerRegistration) => {
                     this._registration = serviceWorkerRegistration;
-                    console.log('Successfully registered service worker');
+                    console.log('[App] Successfully registered service worker');
                     this._registration.pushManager
                         .subscribe({ userVisibleOnly: true })
                         .then((sub) => {
-                            // sub.endpoint
                             let splittedEndpoint = sub.endpoint.split('/');
                             this._notificationService.register(splittedEndpoint[splittedEndpoint.length - 1])
                                 .subscribe(() => {});
                         });
                 })
                 .catch(function (err) {
-                    console.warn('Error whilst registering service worker', err);
+                    console.warn('[App] Error while registering service worker', err);
                 });
         }
     }

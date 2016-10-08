@@ -1,18 +1,12 @@
 'use strict';
 
-const books = [
-    {
-        id: 1,
-        title: 'Buch 1',
-        read: false
-    },
-    {
-        id: 2,
-        title: 'Buch 2',
-        read: true
-    }];
-
-let lastBookId = 2;
+let books = [{
+    id: 1,
+    title: 'Erben des Imperiums',
+    isbn: '978-3442269143',
+    read: true
+}];
+let lastBookId = 0;
 
 const list = (req, res, next) => {
     res.writeHead(200, {
@@ -23,30 +17,33 @@ const list = (req, res, next) => {
     return next();
 };
 
-const add = (req, res, next) => {
-    let book = req.params;
-    book.id = ++lastBookId;
-    books.push(req.params);
+const sync = (req, res, next) => {
+    let newBooks = req.params;
 
-    res.end();
-    return next();
-};
 
-const update = (req, res, next) => {
-
-    let bookIndex = books.findIndex((book) => book.id === req.params.id);
-
-    if (bookIndex >= 0) {
-        books[bookIndex] = req.params;
+    for (let i = 0; i < books.length; i++) {
+        for (let e = 0; e < newBooks.length; e++) {
+            if (books[i].id === newBooks[e].id) {
+                books[i] = newBooks[e];
+                newBooks.splice(e, 1);
+            }
+        }
     }
-    res.end();
+
+    for (let i = 0; i < newBooks.length; i++) {
+        if (!newBooks[i].id) {
+            newBooks[i].id = ++lastBookId;
+            books.push(newBooks[i]);
+        }
+    }
+
+    res.end(JSON.stringify(books));
     return next();
 };
 
 const setup = (server) => {
     server.get('/books', list);
-    server.put('/book', add);
-    server.post('/book', update);
+    server.post('/books/sync', sync);
 };
 
 module.exports = {

@@ -56,7 +56,7 @@ const config = {
     browserSync: {
         // Turn off cross-device sync features
         ghostMode: false,
-        open: true,
+        open: false,
         server: {
             baseDir: './build',
             middleware: {}

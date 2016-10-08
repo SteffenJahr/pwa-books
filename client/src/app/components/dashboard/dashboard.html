@@ -1,17 +1,27 @@
-
-<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" *ngIf="books" style="margin:5%; width: 90%">
+<table class="mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp" *ngIf="books && books.length" style="margin:5%; width: 90%">
     <thead>
         <tr>
-            <th class="mdl-data-table__cell--non-numeric"><h4>Book Title</h4></th>
+
+            <th class="mdl-data-table__cell--non-numeric"><h5>Book Title</h5></th>
+            <th class="mdl-data-table__cell--non-numeric"><h5>ISBN</h5></th>
+            <th class="mdl-data-table__cell--non-numeric"><h5>Read</h5></th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let book of books">
             <td class="mdl-data-table__cell--non-numeric">{{ book.title }}</td>
+            <td class="mdl-data-table__cell--non-numeric">{{ book.isbn }}</td>
+            <td class="mdl-data-table__cell--non-numeric"><input type="checkbox" [ngModel]="book.read" (ngModelChange)="updateBook(book, $event)"></td>
         </tr>
     </tbody>
 </table>
+<div style="margin-left: 5%" *ngIf="!books || !books.length">
+    <h4>No books found.</h4>
+</div>
 <div style="margin-left: 5%;">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" (click)="sync()">
+        Start sync
+    </button>
     <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" (click)="sendNotification()">
         Send a notification
     </button>

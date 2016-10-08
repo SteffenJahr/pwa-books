@@ -16,12 +16,29 @@ export class DashboarcComponent implements OnInit {
     constructor(private _notificationService: NotificationService, private _bookService: BookService) {
     }
 
-    public ngOnInit(): void {
+    public ngOnInit() {
         this._bookService.list()
-            .subscribe((books) => this.books = books);
+            .subscribe((books) => this.books = books,
+                (err) => {
+                    this.books = [];
+                });
     }
 
-    public sendNotification(): void {
-        this._notificationService.send().subscribe(() => {});
+    public sendNotification() {
+        this._notificationService.send().subscribe(() => {
+        });
+    }
+
+    public sync() {
+        this._bookService.sync()
+            .subscribe((books) => {
+                this.books = books;
+            });
+    }
+
+    public updateBook(book, read) {
+        book.read = read;
+        this._bookService.update(book)
+            .subscribe(() => {});
     }
 }

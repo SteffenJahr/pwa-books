@@ -1,13 +1,14 @@
 const appShellFiles = [
     '/',
-    'index.html',
+    '/index.html',
     '/css/material.min.css',
     'resources/launcher-icon.png',
     'resources/launcher-icon-96.png',
     'resources/launcher-icon-144.png',
     'resources/launcher-icon-152.png',
     'resources/launcher-icon-192.png',
-    'resources/launcher-icon-256.png'
+    'resources/launcher-icon-256.png',
+    '/manifest.json'
 ];
 
 const angularFiles = [
@@ -21,7 +22,6 @@ const angularFiles = [
     '/app/appRoutes.js',
     '/app/main.js',
     '/app/module.js',
-    '/serviceWorker.js',
     '/systemSetup.js',
     '/lib/shim.js',
     '/lib/system.src.js',
@@ -37,8 +37,8 @@ const angularFiles = [
     '/lib/@angular/forms/bundles/forms.umd.js'
 ];
 
-const appShellCacheName = 'angular_pwa_app_shell_cache_v1.8';
-const angularCacheName = 'angular_pwa_app_cache_v1.12';
+const appShellCacheName = 'angular_pwa_app_shell_cache_v1.25';
+const angularCacheName = 'angular_pwa_app_cache_v1.25';
 
 self.addEventListener('install', (event) => {
     console.log('[ServiceWorker] Install ServiceWorker');
@@ -75,7 +75,7 @@ self.addEventListener('activate', (event) => {
 });
 
 self.addEventListener('push', (event) => {
-    console.log('Push message received', event);
+    console.log('[ServiceWorker] Push message received', event);
 
     event.waitUntil(
         self.registration.showNotification('Notification', {
@@ -86,14 +86,7 @@ self.addEventListener('push', (event) => {
 self.addEventListener('fetch', function (e) {
     e.respondWith(
         self.caches.match(e.request).then(function (response) {
-
-            if (response) {
-                console.log('[ServiceWorker] Respond from cache');
-                return response;
-            }
-
-            console.log('[ServiceWorker] No cache response found', e.request.url);
-            return self.fetch(e.request);
+            return response || self.fetch(e.request);
         })
     );
 });
