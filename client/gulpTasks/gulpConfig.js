@@ -30,12 +30,16 @@ const config = {
         },
         assets: [
             'src/assets/**/*'
+        ],
+        resources: [
+            'src/resources/**/*'
         ]
     },
     targets: {
         build: 'build',
         lib: 'build/lib',
-        assets: 'build/assets'
+        assets: 'build/assets',
+        resources: 'build/resources'
     },
     typescript: {
         target: 'ES5',

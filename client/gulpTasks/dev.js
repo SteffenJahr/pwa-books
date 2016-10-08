@@ -153,6 +153,19 @@ gulp.task('dev:serviceWorker:cache', function (done) {
 gulp.task('dev:serviceWorker:watch', () => watch(['!' + path.join(config.targets.build, 'serviceWorker.js'), config.targets.build],
     batch((events, done) => runSequence('dev:serviceWorker:cache', done))));
 
+function createResourcesPipe(sources) {
+    return sources
+        .pipe(count('Copied ## resource files'))
+        .pipe(gulp.dest(config.targets.resources))
+        .on('end', () => browserSync.reload());
+}
+
+gulp.task('dev:resources', () => createResourcesPipe(gulp.src(config.sources.resources)));
+
+gulp.task('dev:resources:watch', () => watch(config.sources.resources,
+    batch(events => createResourcesPipe(events))));
+
+
 gulp.task('dev:watch', done => {
     runSequence(
         'dev:watch:init',
@@ -162,7 +175,8 @@ gulp.task('dev:watch', done => {
             'dev:templates:watch',
             'dev:systemJs:watch',
             'dev:index:watch',
-            'dev:manifest:watch'
+            'dev:manifest:watch',
+            'dev:resources:watch'
             //'dev:serviceWorker:watch'
         ],
         done
@@ -178,7 +192,8 @@ gulp.task('dev-build', done => {
             'dev:nodeModules',
             'dev:scripts',
             'dev:styles',
-            'dev:systemJs'
+            'dev:systemJs',
+            'dev:resources'
         ],
         'dev:manifest',
         'dev:index',
