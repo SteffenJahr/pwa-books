@@ -38,20 +38,23 @@ const angularFiles = [
 ];
 
 const appShellCacheName = 'angular_pwa_app_shell_cache_v1.3';
-const angularCacheName = 'angular_pwar_app_cache_v1.3';
+const angularCacheName = 'angular_pwa_app_cache_v1.5';
 
 self.addEventListener('install', (event) => {
-    console.log('install');
+    console.log('[ServiceWorker] Install ServiceWorker');
     event.waitUntil((
-        caches.open(appShellCacheName)
+        self.caches.open(appShellCacheName)
             .then((cache) => {
                 return cache.addAll(appShellFiles);
             })
             .then(() => {
-                return caches.open(angularCacheName);
+                return self.caches.open(angularCacheName);
             })
             .then((appCache) => {
                 return appCache.addAll(angularFiles);
+            })
+            .then(() => {
+                return self.skipWaiting();
             })
     ));
 });
@@ -59,11 +62,11 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
     console.log('[ServiceWorker] Activate');
     event.waitUntil(
-        caches.keys().then((keyList) => {
+        self.caches.keys().then((keyList) => {
             return Promise.all(keyList.map((key) => {
                 if (key !== appShellCacheName && key !== angularCacheName) {
                     console.log('[ServiceWorker] Removing old cache', key);
-                    return caches.delete(key);
+                    return self.caches.delete(key);
                 }
             }));
         })
@@ -82,7 +85,7 @@ self.addEventListener('push', (event) => {
 
 self.addEventListener('fetch', function (e) {
     e.respondWith(
-        caches.match(e.request).then(function (response) {
+        self.caches.match(e.request).then(function (response) {
 
             if (response) {
                 console.log('[ServiceWorker] Respond from cache');
@@ -90,7 +93,7 @@ self.addEventListener('fetch', function (e) {
             }
 
             console.log('[ServiceWorker] No cache response found', e.request.url);
-            return fetch(e.request);
+            return self.fetch(e.request);
         })
     );
 });
