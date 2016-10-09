@@ -1,6 +1,7 @@
 const appShellFiles = [
     '/',
     '/index.html',
+    '/serviceWorker.js',
     '/css/materialize.min.css',
     '/css/material-icons.css',
     '/resources/launcher-icon.png',
@@ -67,8 +68,8 @@ const angularFiles = [
     '/lib/@angular/forms/bundles/forms.umd.js'
 ];
 
-const appShellCacheName = 'angular_pwa_app_shell_cache_v1.4';
-const angularCacheName = 'angular_pwa_app_cache_v1.4';
+const appShellCacheName = 'angular_pwa_app_shell_cache_v1.10';
+const angularCacheName = 'angular_pwa_app_cache_v1.10';
 
 self.addEventListener('install', (event) => {
     console.log('[ServiceWorker] Install ServiceWorker');
@@ -117,8 +118,11 @@ self.addEventListener('fetch', function (e) {
     e.respondWith(
         self.caches.match(e.request).then(function (response) {
 
-            if(response){
+            if (response) {
                 console.log('[ServiceWorker] Respond from Cache')
+            }
+            else {
+                console.log('[ServiceWorker] Fetch: ', e.request);
             }
 
             return response || self.fetch(e.request);
