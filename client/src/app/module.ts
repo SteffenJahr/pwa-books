@@ -11,6 +11,7 @@ import {NotificationService} from './services/notification';
 import {FormsModule} from '@angular/forms';
 import {LocalStorageService} from './services/localStorage';
 import {AddComponent} from './components/add/add';
+import {InputFieldComponent} from './components/inputField/inputField';
 
 @NgModule({
     imports: [
@@ -22,7 +23,8 @@ import {AddComponent} from './components/add/add';
     declarations: [
         AppComponent,
         DashboarcComponent,
-        AddComponent
+        AddComponent,
+        InputFieldComponent
     ],
     bootstrap: [AppComponent],
     providers: [

@@ -5,18 +5,8 @@
 </div>
 <div class="row">
     <div class="col s12">
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="title" type="text" [(ngModel)]="book.title">
-                <label for="title">Title</label>
-            </div>
-        </div>
-        <div class="row">
-            <div class="input-field col s12">
-                <input id="isbn" type="text" [(ngModel)]="book.isbn">
-                <label for="isbn">ISBN</label>
-            </div>
-        </div>
+        <input-field title="Title" [model]="book.title" (modelChange)="book.title = $event"></input-field>
+        <input-field title="ISBN" [model]="book.isbn" (modelChange)="book.isbn = $event"></input-field>
     </div>
 </div>
 <div class="row">

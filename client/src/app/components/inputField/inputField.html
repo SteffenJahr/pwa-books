@@ -1,0 +1,6 @@
+<div class="row">
+    <div class="input-field col s12">
+        <input [attr.id]="id" type="text" [ngModel]="model" (ngModelChange)="changeValue($event)" (focus)="focus()" (blur)="blur()">
+        <label [attr.for]="id" [ngClass]="{ 'active': hasFocus }">{{ title }}</label>
+    </div>
+</div>

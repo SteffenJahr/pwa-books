@@ -42,6 +42,7 @@ const angularFiles = [
     '/app/components/app/app.js',
     '/app/components/dashboard/dashboard.js',
     '/app/components/add/add.js',
+    '/app/components/inputField/inputField.js',
     '/app/models/book.js',
     '/app/services/baseApi.js',
     '/app/services/book.js',
@@ -66,8 +67,8 @@ const angularFiles = [
     '/lib/@angular/forms/bundles/forms.umd.js'
 ];
 
-const appShellCacheName = 'angular_pwa_app_shell_cache_v1.3';
-const angularCacheName = 'angular_pwa_app_cache_v1.3';
+const appShellCacheName = 'angular_pwa_app_shell_cache_v1.4';
+const angularCacheName = 'angular_pwa_app_cache_v1.4';
 
 self.addEventListener('install', (event) => {
     console.log('[ServiceWorker] Install ServiceWorker');
