@@ -1,6 +1,6 @@
 {
-    "short_name": "Angular PWA Demo",
-    "name": "Angular Progressive Web App Demo",
+    "short_name": "PWA Books",
+    "name": "PWA Books",
     "gcm_sender_id": "873885163759",
     "icons": [
         {
@@ -31,5 +31,5 @@
     ],
     "start_url": "/",
     "display": "fullscreen",
-    "orientation": "landscape"
+    "orientation": "portrait"
 }
