@@ -1,26 +1,28 @@
 {
-  "name": "progressive_web_app_demo",
-  "version": "1.0.0",
-  "description": "Demo that shows how to use Angular 2 to build a progressive web app.",
-  "main": "src/index.js",
-  "scripts": {
-    "start": "nodemon ./src/index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SteffenJahr/angular-progressive-web-app-demo.git"
-  },
-  "author": "Steffen Jahr <info@steffenjahr.de>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SteffenJahr/angular-progressive-web-app-demo/issues"
-  },
-  "homepage": "https://github.com/SteffenJahr/angular-progressive-web-app-demo#readme",
-  "devDependencies": {
-    "nodemon": "1.11.0",
-    "request": "2.75.0",
-    "require-dir": "0.3.0",
-    "restify": "4.1.1",
-    "restify-cors-middleware": "0.0.7"
-  }
+    "name": "progressive_web_app_demo",
+    "version": "1.0.0",
+    "description": "Demo that shows how to use Angular 2 to build a progressive web app.",
+    "main": "src/index.js",
+    "scripts": {
+        "start": "nodemon ./src/index.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SteffenJahr/angular-progressive-web-app-demo.git"
+    },
+    "author": "Steffen Jahr <info@steffenjahr.de>",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/SteffenJahr/angular-progressive-web-app-demo/issues"
+    },
+    "homepage": "https://github.com/SteffenJahr/angular-progressive-web-app-demo#readme",
+    "devDependencies": {
+        "nodemon": "1.11.0"
+    },
+    "dependencies": {
+        "request": "2.75.0",
+        "require-dir": "0.3.0",
+        "restify": "4.1.1",
+        "restify-cors-middleware": "0.0.7"
+    }
 }
