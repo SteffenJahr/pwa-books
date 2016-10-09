@@ -161,9 +161,9 @@ gulp.task('dev:bundle:rxjs', () => {
     return builder.bundle('rxjs', `${config.targets.lib}/rxjs/Rx.js`, options);
 });
 
-gulp.task('dev:assets', () => {
-    return gulp.src(config.sources.assets)
-        .pipe(gulp.dest(config.targets.assets));
+gulp.task('dev:fonts', () => {
+    return gulp.src(config.sources.fonts)
+        .pipe(gulp.dest(config.targets.fonts));
 });
 
 gulp.task('dev:manifest', () => {
@@ -206,7 +206,7 @@ gulp.task('dev-build', done => {
     runSequence(
         'dev:clean',
         [
-            'dev:assets',
+            'dev:fonts',
             'dev:vendorScripts',
             'dev:nodeModules',
             'dev:scripts',

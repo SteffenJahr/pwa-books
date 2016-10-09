@@ -24,17 +24,13 @@ const config = {
                 'src/less/app.less'
             ],
             vendor: [
-                'src/assets/material.min.css',
+                'node_modules/materialize-css/dist/css/materialize.min.css',
                 'src/assets/material-icons.css'
             ]
         },
-        assets: [
-            'src/assets/MaterialIcons-Regular.eot',
-            'src/assets/MaterialIcons-Regular.ijmap',
-            'src/assets/MaterialIcons-Regular.svg',
-            'src/assets/MaterialIcons-Regular.ttf',
-            'src/assets/MaterialIcons-Regular.woff',
-            'src/assets/MaterialIcons-Regular.woff2',
+        fonts: [
+            'src/assets/**/*',
+            'node_modules/materialize-css/dist/fonts/**/*'
         ],
         resources: [
             'src/resources/**/*'
@@ -43,7 +39,7 @@ const config = {
     targets: {
         build: 'build',
         lib: 'build/lib',
-        assets: 'build/assets',
+        fonts: 'build/fonts',
         resources: 'build/resources'
     },
     typescript: {
@@ -88,7 +84,7 @@ config.injectables = [
     ...config.vendorScripts.map(v => path.join(config.targets.lib, v.split('/').slice(-1)[0])),
     ...config.bundles.map(v => path.join(config.targets.lib, v)),
     path.join(config.targets.build, config.systemJs.split('/').slice(-1)[0]),
-    path.join(config.targets.build, '**/*.css')
+    path.join(config.targets.build, '/css/**/*.css')
 ];
 
 module.exports = config;

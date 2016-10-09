@@ -1,19 +1,27 @@
 const appShellFiles = [
     '/',
     '/index.html',
-    '/css/material.min.css',
-    'resources/launcher-icon.png',
-    'resources/launcher-icon-96.png',
-    'resources/launcher-icon-144.png',
-    'resources/launcher-icon-152.png',
-    'resources/launcher-icon-192.png',
-    'resources/launcher-icon-256.png',
+    '/css/materialize.min.css',
+    '/css/material-icons.css',
+    '/resources/launcher-icon.png',
+    '/resources/launcher-icon-96.png',
+    '/resources/launcher-icon-144.png',
+    '/resources/launcher-icon-152.png',
+    '/resources/launcher-icon-192.png',
+    '/resources/launcher-icon-256.png',
+    '/fonts/MaterialIcons-Regular.eot',
+    '/fonts/MaterialIcons-Regular.ijmap',
+    '/fonts/MaterialIcons-Regular.svg',
+    '/fonts/MaterialIcons-Regular.ttf',
+    '/fonts/MaterialIcons-Regular.woff',
+    '/fonts/MaterialIcons-Regular.woff2',
     '/manifest.json'
 ];
 
 const angularFiles = [
     '/app/components/app/app.js',
     '/app/components/dashboard/dashboard.js',
+    '/app/components/add/add.js',
     '/app/models/book.js',
     '/app/services/baseApi.js',
     '/app/services/book.js',
@@ -38,8 +46,8 @@ const angularFiles = [
     '/lib/@angular/forms/bundles/forms.umd.js'
 ];
 
-const appShellCacheName = 'angular_pwa_app_shell_cache_v1.26';
-const angularCacheName = 'angular_pwa_app_cache_v1.26';
+const appShellCacheName = 'angular_pwa_app_shell_cache_v1.40';
+const angularCacheName = 'angular_pwa_app_cache_v1.40';
 
 self.addEventListener('install', (event) => {
     console.log('[ServiceWorker] Install ServiceWorker');
@@ -87,6 +95,11 @@ self.addEventListener('push', (event) => {
 self.addEventListener('fetch', function (e) {
     e.respondWith(
         self.caches.match(e.request).then(function (response) {
+
+            if(response){
+                console.log('[ServiceWorker]')
+            }
+
             return response || self.fetch(e.request);
         })
     );

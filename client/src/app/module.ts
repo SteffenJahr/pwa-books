@@ -10,6 +10,7 @@ import {BookService} from './services/book';
 import {NotificationService} from './services/notification';
 import {FormsModule} from '@angular/forms';
 import {LocalStorageService} from './services/localStorage';
+import {AddComponent} from './components/add/add';
 
 @NgModule({
     imports: [
@@ -20,7 +21,8 @@ import {LocalStorageService} from './services/localStorage';
     ],
     declarations: [
         AppComponent,
-        DashboarcComponent
+        DashboarcComponent,
+        AddComponent
     ],
     bootstrap: [AppComponent],
     providers: [

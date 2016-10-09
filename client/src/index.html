@@ -12,27 +12,57 @@
     <meta name="msapplication-TileColor" content="#000000">
     <!-- inject:css -->
     <!-- endinject -->
+    <style type="text/css">
+
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+    </style>
 </head>
 <body>
 
 </body>
-<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-    <header class="mdl-layout__header">
-        <div class="mdl-layout__header-row">
-            <!-- Title -->
-            <span class="mdl-layout-title">Angular Progressive Web App Demo</span>
-        </div>
-    </header>
-    <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Angular Progressive Web App Demo</span>
+<nav>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo">Angular PWA Demo</a>
     </div>
-    <main class="mdl-layout__content">
-        <div class="page-content">
-            <app-root>
-            </app-root>
-        </div>
-    </main>
+</nav>
+<div class="container">
+    <div class="section">
+        <app-root></app-root>
+    </div>
 </div>
+<!--<div class="mdl-layout mdl-js-layout mdl-layout&#45;&#45;fixed-header">-->
+<!--<header class="mdl-layout__header">-->
+<!--<div class="mdl-layout__header-row">-->
+<!--&lt;!&ndash; Title &ndash;&gt;-->
+<!--<span class="mdl-layout-title">Angular Progressive Web App Demo</span>-->
+<!--<div class="mdl-layout-spacer"></div>-->
+<!--<nav class="mdl-navigation mdl-layout&#45;&#45;large-screen-only">-->
+<!--<button class="mdl-button mdl-js-button mdl-button&#45;&#45;fab mdl-button&#45;&#45;colored">-->
+<!--<i class="material-icons">add</i>-->
+<!--</button>-->
+<!--</nav>-->
+<!--</div>-->
+
+<!--</header>-->
+<!--<div class="mdl-layout__drawer">-->
+<!--<span class="mdl-layout-title">Angular Progressive Web App Demo</span>-->
+<!--</div>-->
+<!--<main class="mdl-layout__content">-->
+<!--<div class="page-content">-->
+<!--<app-root>-->
+<!--</app-root>-->
+<!--</div>-->
+<!--</main>-->
+<!--</div>-->
 <!-- inject:js -->
 <!-- endinject -->
 </html>

@@ -6,7 +6,7 @@ let books = [{
     isbn: '978-3442269143',
     read: true
 }];
-let lastBookId = 0;
+let lastBookId = 1;
 
 const list = (req, res, next) => {
     res.writeHead(200, {
@@ -20,7 +20,6 @@ const list = (req, res, next) => {
 const sync = (req, res, next) => {
     let newBooks = req.params;
 
-
     for (let i = 0; i < books.length; i++) {
         for (let e = 0; e < newBooks.length; e++) {
             if (books[i].id === newBooks[e].id) {
@@ -31,7 +30,7 @@ const sync = (req, res, next) => {
     }
 
     for (let i = 0; i < newBooks.length; i++) {
-        if (!newBooks[i].id) {
+        if (newBooks[i].id <= 0) {
             newBooks[i].id = ++lastBookId;
             books.push(newBooks[i]);
         }

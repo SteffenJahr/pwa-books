@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col s12">
+        <h4>Add book</h4>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="title" type="text" [(ngModel)]="book.title">
+                <label for="title">Title</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="isbn" type="text" [(ngModel)]="book.isbn">
+                <label for="isbn">ISBN</label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <button class="btn waves-effect waves-light" (click)="save()">Save
+        </button>
+        <button class="btn waves-effect waves-light" (click)="cancel()">Cancel
+        </button>
+
+    </div>
+</div>
