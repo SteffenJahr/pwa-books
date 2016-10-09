@@ -8,7 +8,7 @@
     <link rel="manifest" href="manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Angular PWA Demo">
+    <meta name="apple-mobile-web-app-title" content="PWA Books">
     <link rel="apple-touch-icon" href="resources/launcher-icon-152.png">
     <meta name="msapplication-TileImage" content="resources/launcher-icon-144.png">
     <meta name="msapplication-TileColor" content="#000000">
@@ -26,10 +26,21 @@
 <div class="container">
     <div class="section">
         <app-root>
-            <div class="progress blue">
-                <div class="indeterminate blue lighten-5"></div>
+            <div class="center-align">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-blue-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-
         </app-root>
     </div>
 </div>
