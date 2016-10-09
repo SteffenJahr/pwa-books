@@ -26,6 +26,8 @@ export class InputFieldComponent {
     }
 
     public blur() {
-        this.hasFocus = false;
+        if(!this.model){
+            this.hasFocus = false;
+        }
     }
 }
