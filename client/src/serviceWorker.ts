@@ -110,7 +110,8 @@ self.addEventListener('push', (event) => {
 
     event.waitUntil(
         self.registration.showNotification('Notification', {
-            body: 'You received a notification.'
+            body: 'You received a notification.',
+            icon: 'resources/launcher-icon-144.png'
         }));
 });
 
@@ -122,7 +123,7 @@ self.addEventListener('fetch', function (e) {
                 console.log('[ServiceWorker] Respond from Cache')
             }
             else {
-                console.log('[ServiceWorker] Fetch: ', e.request);
+                console.log('[ServiceWorker] Fetch: ', e.request.url);
             }
 
             return response || self.fetch(e.request);
