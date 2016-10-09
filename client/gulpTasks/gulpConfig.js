@@ -24,11 +24,17 @@ const config = {
                 'src/less/app.less'
             ],
             vendor: [
-                'src/assets/material.min.css'
+                'src/assets/material.min.css',
+                'src/assets/material-icons.css'
             ]
         },
         assets: [
-
+            'src/assets/MaterialIcons-Regular.eot',
+            'src/assets/MaterialIcons-Regular.ijmap',
+            'src/assets/MaterialIcons-Regular.svg',
+            'src/assets/MaterialIcons-Regular.ttf',
+            'src/assets/MaterialIcons-Regular.woff',
+            'src/assets/MaterialIcons-Regular.woff2',
         ],
         resources: [
             'src/resources/**/*'
