@@ -3,18 +3,20 @@
         <h4>Add book</h4>
     </div>
 </div>
-<div class="row">
-    <div class="col s12">
-        <input-field title="Title" [model]="book.title" (modelChange)="book.title = $event"></input-field>
-        <input-field title="ISBN" [model]="book.isbn" (modelChange)="book.isbn = $event"></input-field>
+<form #addForm="ngForm" (ngSubmit)="save()">
+    <div class="row">
+        <div class="col s12">
+            <input-field title="Title" [(ngModel)]="book.title" name="title" #title="ngModel" required [valid]="title.valid"></input-field>
+            <input-field title="ISBN" [(ngModel)]="book.isbn" name="isbn"></input-field>
+        </div>
     </div>
-</div>
-<div class="row">
-    <div class="col s12">
-        <button class="btn waves-effect waves-light" (click)="save()">Save
-        </button>
-        <button class="btn waves-effect waves-light" (click)="cancel()">Cancel
-        </button>
+    <div class="row">
+        <div class="col s12">
+            <button class="btn waves-effect waves-light" (click)="save()" type="submit" [disabled]="!addForm.form.valid">Save
+            </button>
+            <button class="btn waves-effect waves-light" (click)="cancel()">Cancel
+            </button>
 
+        </div>
     </div>
-</div>
+</form>
