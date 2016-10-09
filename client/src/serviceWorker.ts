@@ -46,8 +46,8 @@ const angularFiles = [
     '/lib/@angular/forms/bundles/forms.umd.js'
 ];
 
-const appShellCacheName = 'angular_pwa_app_shell_cache_v1.40';
-const angularCacheName = 'angular_pwa_app_cache_v1.40';
+const appShellCacheName = 'angular_pwa_app_shell_cache_v1.1';
+const angularCacheName = 'angular_pwa_app_cache_v1.1';
 
 self.addEventListener('install', (event) => {
     console.log('[ServiceWorker] Install ServiceWorker');
