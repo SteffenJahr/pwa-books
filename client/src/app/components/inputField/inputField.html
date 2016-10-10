@@ -1,0 +1,7 @@
+<div class="row">
+    <div class="input-field col s12">
+        <input [attr.id]="id" type="text" [(ngModel)]="value"
+               (focus)="onFocus()" (blur)="onBlur()" class="validate" [ngClass]="{ 'valid': valid, 'invalid': !valid }">
+        <label [attr.for]="id" [ngClass]="{ 'active': hasFocus }">{{ title }}</label>
+    </div>
+</div>

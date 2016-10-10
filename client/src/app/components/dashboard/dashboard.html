@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col s12">
+        <table class="striped" *ngIf="books && books.length">
+            <thead>
+                <tr>
+                    <th>Book title</th>
+                    <th>ISBN</th>
+                    <th>Read</th>
+                    <th>Sync</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let book of books; let i = index">
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td><input type="checkbox" [ngModel]="book.read" (ngModelChange)="updateBook(book, $event)" [attr.id]="i"><label [attr.for]="i"></label></td>
+                    <td><input type="checkbox" disabled="disabled" [ngModel]="book.id && book.id > 0" [attr.id]="'sync_' + i"><label [attr.for]="'sync_' + i"></label></td>
+                </tr>
+            </tbody>
+        </table>
+        <div *ngIf="!books || !books.length">
+            <h4>No books found!</h4>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col s12">
+        <button class="btn waves-effect waves-light blue" (click)="sync()">Sync
+            <i class="material-icons right">refresh</i>
+        </button>
+        <button class="btn waves-effect waves-light blue" (click)="sendNotification()">Notify
+            <i class="material-icons right">mail</i>
+        </button>
+    </div>
+</div>
+
