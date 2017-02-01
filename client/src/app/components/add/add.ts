@@ -10,7 +10,6 @@ import {Router} from '@angular/router';
 })
 export class AddComponent {
     public book: Book;
-    public titleFocus: boolean;
 
     constructor(private _bookService: BookService, private _router: Router) {
         this.book = new Book();

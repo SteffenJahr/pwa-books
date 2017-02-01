@@ -1,5 +1,5 @@
-import {Component, Input, Output, EventEmitter, forwardRef, Host} from '@angular/core';
-import {ControlValueAccessor, NG_VALUE_ACCESSOR, NgControl} from '@angular/forms';
+import {Component, Input, forwardRef} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 export const INPUT_FIELD_VALUE_ACCESSOR: any = {
     provide: NG_VALUE_ACCESSOR,

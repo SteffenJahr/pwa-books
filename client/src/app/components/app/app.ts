@@ -10,7 +10,7 @@ import {Router} from '@angular/router';
 @Injectable()
 export class AppComponent {
 
-    constructor(private _serviveWorker: ServiceWorkerService, private _router: Router) {
+    constructor(_serviveWorker: ServiceWorkerService, private _router: Router) {
         _serviveWorker.register();
     }
 
