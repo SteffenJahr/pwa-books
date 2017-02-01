@@ -9,7 +9,7 @@ import {Book} from '../../models/book';
     templateUrl: 'dashboard.html'
 })
 @Injectable()
-export class DashboarcComponent implements OnInit {
+export class DashboardComponent implements OnInit {
 
     public books: Array<Book>;
 

@@ -4,7 +4,7 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './components/app/app';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {AppRoutes, appRoutingProviders} from './appRoutes';
-import {DashboarcComponent} from './components/dashboard/dashboard';
+import {DashboardComponent} from './components/dashboard/dashboard';
 import {ServiceWorkerService} from './services/serviceWorker';
 import {BookService} from './services/book';
 import {NotificationService} from './services/notification';
@@ -22,7 +22,7 @@ import {InputFieldComponent} from './components/inputField/inputField';
     ],
     declarations: [
         AppComponent,
-        DashboarcComponent,
+        DashboardComponent,
         AddComponent,
         InputFieldComponent
     ],
