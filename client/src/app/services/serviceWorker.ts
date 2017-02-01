@@ -1,4 +1,3 @@
-// <reference path="../../../typings/globals/serviceworker/index.d.ts"/>
 import {NotificationService} from './notification';
 import {Injectable} from '@angular/core';
 
@@ -22,7 +21,8 @@ export class ServiceWorkerService {
                         .then((sub) => {
                             let splittedEndpoint = sub.endpoint.split('/');
                             this._notificationService.register(splittedEndpoint[splittedEndpoint.length - 1])
-                                .subscribe(() => {});
+                                .subscribe(() => {
+                                });
                         });
                 })
                 .catch(function (err) {

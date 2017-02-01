@@ -45,13 +45,19 @@ const config = {
     typescript: {
         dev: {
             target: 'ES5',
-            module: 'system',
+            module: 'commonjs',
             moduleResolution: 'node',
             declaration: false,
             emitDecoratorMetadata: true,
             experimentalDecorators: true,
             removeComments: false,
-            noImplicitAny: false
+            noImplicitAny: false,
+            noUnusedLocals: true,
+            noUnusedParameters: false,
+            lib: [
+                "es2015",
+                "dom"
+            ]
         }
     },
     browsers: ['IE >= 11', 'last 2 versions'],
@@ -63,7 +69,7 @@ const config = {
             baseDir: './build',
             middleware: {}
         },
-        port: 8888
+        port: 8091
     },
     vendorScripts: [
         'node_modules/core-js/client/shim.js',
